@@ -1,24 +1,21 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import type { Dispatch, SetStateAction } from 'react';
 import type { Cat } from '../../App';
+import { HeartIcon } from '../../components/HeartIcon';
 
 // Function to get two number in random
 const getRandomNumber = (min: number, max: number) => {
     return Math.random() * (max - min) + min;
 }
 
-export function Card({ id, url, cats, setCats, setLikedCats }: { id: string; url: string; cats: Cat[]; setCats: Dispatch<SetStateAction<Cat[]>>; setLikedCats: Dispatch<SetStateAction<Cat[]>> }) {
+// Component Card to use in HomePage
+export function Card({ id, url, tags, cats, setCats, setLikedCats }: { id: string; url: string; tags: string[]; cats: Cat[]; setCats: Dispatch<SetStateAction<Cat[]>>; setLikedCats: Dispatch<SetStateAction<Cat[]>> }) {
     const x = useMotionValue(0);
 
-    // --- YOUR ORIGINAL PHYSICS ---
     // Opacity when the image when swipping (opacity goes to 0.7 when -150 and 150)
     const opacity = useTransform(x, [-150, 0, 150], [0.9, 1, 0.9]);
     // Rotation of the cats image when swipping
     const rotateRaw = useTransform(x, [-150, 150], [-18, 18]);
-
-    // --- NEW: Stamp Opacity Logic (Fades in based on X movement) ---
-    const likeOpacity = useTransform(x, [25, 150], [0, 1]);
-    const nopeOpacity = useTransform(x, [-25, -150], [0, 1]);
 
     // Telling which card is at the infront
     const isFront = id === cats[cats.length - 1].id
@@ -27,6 +24,11 @@ export function Card({ id, url, cats, setCats, setLikedCats }: { id: string; url
         const offset = isFront ? 0 : getRandomNumber(6, -6);
         return rotateRaw.get() + offset;
     })
+
+    // Opacity for swipe right to show like icon (opacity from 0.25 goes to 1 when MotionValue is 75)
+    const likeOpacity = useTransform(x, [0, 75], [0.25, 1]);
+    // Opacity for swipe left to show dislike icon (opacity from 0.25 goes to 1 when MotionValue is -75)
+    const dislikeOpacity = useTransform(x, [-75, 0], [1, 0.25]);
 
     // Handle when the image been dragged
     const handleDragEnd = () => {
@@ -45,8 +47,7 @@ export function Card({ id, url, cats, setCats, setLikedCats }: { id: string; url
 
     return (
         <motion.div
-            // MOVED: Classes from img to div so the whole card moves
-            className="absolute w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[28rem] rounded-lg 
+            className="absolute w-56 h-68 sm:w-72 sm:h-96 md:w-80 md:h-[28rem] rounded-lg 
             hover:cursor-grab active:cursor-grabbing origin-bottom"
             style={{
                 gridRow: 1,
@@ -69,30 +70,50 @@ export function Card({ id, url, cats, setCats, setLikedCats }: { id: string; url
             }}
             onDragEnd={handleDragEnd}
         >
-            {/* The Image is now a child, taking up 100% of the wrapper */}
-            <img 
-                src={url} 
-                alt={id} 
+            <img
+                src={url}
+                alt={id}
                 className="w-full h-full object-cover rounded-lg pointer-events-none select-none"
             />
 
-            {/* --- LIKE STAMP (Only shows when dragging right) --- */}
-            <motion.div 
-                style={{ opacity: likeOpacity }}
-                className="absolute top-8 left-6 -rotate-12 border-4 border-green-400 text-green-400 
-                font-extrabold text-3xl px-3 py-1 rounded-lg pointer-events-none z-10 bg-black/10"
-            >
-                LIKE
-            </motion.div>
+            {/* Stamp for Like/Dislike */}
+            {isFront && (
+                <div className="absolute inset-0 rounded-lg overflow-hidden pointer-events-none">
+                    {/* Dislike/Skip Icon (Swipe Left) */}
+                    <motion.div
+                        className="absolute top-4 left-4 text-slate-700"
+                        style={{ opacity: dislikeOpacity }}
+                    >
+                        <HeartIcon />
+                    </motion.div>
 
-            {/* --- NOPE STAMP (Only shows when dragging left) --- */}
-            <motion.div 
-                style={{ opacity: nopeOpacity }}
-                className="absolute top-8 right-6 rotate-12 border-4 border-red-500 text-red-500 
-                font-extrabold text-3xl px-3 py-1 rounded-lg pointer-events-none z-10 bg-black/10"
-            >
-                NOPE
-            </motion.div>
+                    {/* Like Icon (Swipe Right) */}
+                    <motion.div
+                        className="absolute top-4 right-4 text-red-500"
+                        style={{ opacity: likeOpacity }}
+                    >
+                        <HeartIcon />
+                    </motion.div>
+                </div>
+            )}
+
+            {/* Dark gradient mask at bottom to show tags */}
+            <div className="absolute bottom-0 left-0 right-0 h-46 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none"></div>
+
+            {/* Tags */}
+            {tags && tags.length > 0 && (
+                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 pointer-events-none">
+                    {/* Show at most 4 tags for each cat images */}
+                    {tags.slice(0, 4).map((tag, index) => (
+                        <span
+                            key={index}
+                            className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium"
+                        >
+                            #{tag}
+                        </span>
+                    ))}
+                </div>
+            )}
 
         </motion.div>
     )
