@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
 
 :root {
   font-family: 'Nunito', system-ui, sans-serif;
@@ -14,7 +14,6 @@ body {
   min-height: 100vh;
   /* Deep minimalist background base */
   background-color: #0f172a; 
-  overflow: hidden; /* Prevent scroll bounce on mobile */
 }
 
 /* Hide scrollbar for clean mobile look */
