@@ -3,13 +3,13 @@
 An interactive cat-browsing web app inspired by Tinder — built with React and powered by the Cataas API.
 Users can swipe right to “like” or left to “dislike” cat images, view their liked cats, and enjoy infinite new content through automatic refetching.
 
-🌐 Live Demo
+# 🌐 Live Demo
 
 💻 GitHub Repository: https://github.com/Dicksonwh0217/PawsPreferences
 
 🔗 Live Website: https://dicksonwh0217.github.io/paws-preferences
 
-🚀 Features
+# 🚀 Features
 
 😺 Tinder-style Swiping – Swipe right to like or left to dislike cats.
 
@@ -24,7 +24,7 @@ Users can swipe right to “like” or left to “dislike” cat images, view th
 🌐 Dynamic API Integration – Fetches data from Cataas.com
  and stores it in JSON for rendering and reuse.
 
-🧱 Tech Stack
+# 🧱 Tech Stack
 Category	Technologies:
 
 Frontend	React, Vite, JavaScript, CSS
@@ -45,6 +45,10 @@ npm run dev
 
 # 4️⃣ Build for production
 npm run build
+
+# Demo
+
+![PawsPreferences](https://github.com/user-attachments/assets/01aded47-0646-411a-a67b-d78ec1745c64)
 
 💡 Key Learnings
 
