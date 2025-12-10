@@ -1,4 +1,4 @@
-🐾 Paws Preferences
+# 🐾 Paws Preferences
 
 An interactive cat-browsing web app inspired by Tinder — built with React and powered by the Cataas API.
 Users can swipe right to “like” or left to “dislike” cat images, view their liked cats, and enjoy infinite new content through automatic refetching.
