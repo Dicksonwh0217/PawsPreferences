@@ -5,9 +5,9 @@ Users can swipe right to “like” or left to “dislike” cat images, view th
 
 🌐 Live Demo
 
-💻 GitHub Repository: github.com/Dicksonwh0217/PawsPreferences
+💻 GitHub Repository: https://github.com/Dicksonwh0217/PawsPreferences
 
-🔗 Live Website: dicksonwh0217.github.io/paws-preferences
+🔗 Live Website: https://dicksonwh0217.github.io/paws-preferences
 
 🚀 Features
 
