@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+🐾 Paws Preferences
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive cat-browsing web app inspired by Tinder — built with React and powered by the Cataas API.
+Users can swipe right to “like” or left to “dislike” cat images, view their liked cats, and enjoy infinite new content through automatic refetching.
 
-Currently, two official plugins are available:
+🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+💻 GitHub Repository: github.com/Dicksonwh0217/PawsPreferences
 
-## React Compiler
+🔗 Live Website: dicksonwh0217.github.io/paws-preferences
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🚀 Features
 
-## Expanding the ESLint configuration
+😺 Tinder-style Swiping – Swipe right to like or left to dislike cats.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🔁 Auto Reload – Automatically fetches new cat images when the array is empty.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+🐱 Liked Cats View – Dedicated page to review all your liked cats.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🏷️ Tag Display – Each cat card shows relevant tags fetched from the API.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+⚡ Smooth Transitions – CSS animations for interactive and fluid swiping.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🌐 Dynamic API Integration – Fetches data from Cataas.com
+ and stores it in JSON for rendering and reuse.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🧱 Tech Stack
+Category	Technologies:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Frontend	React, Vite, JavaScript, CSS
+API	Cataas API
+
+Tools	Git, GitHub, NPM
+⚙️ Installation & Setup
+# 1️⃣ Clone the repository
+git clone https://github.com/Dicksonwh0217/PawsPreferences.git
+
+cd PawsPreferences
+
+# 2️⃣ Install dependencies
+npm install
+
+# 3️⃣ Run locally
+npm run dev
+
+# 4️⃣ Build for production
+npm run build
+
+💡 Key Learnings
+
+Implemented API integration and JSON handling using fetch in React.
+
+Practiced state management to handle liked/disliked data.
+
+Designed an engaging UI with animation and component reusability.
+
+Enhanced understanding of React hooks and event-driven interaction logic.
